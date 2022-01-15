@@ -9,7 +9,19 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php 
+
+if ( class_exists( 'WooCommerce' ) ):
+
+	if ( is_checkout() ) {post_class('checkout-post');} 
+
+	elseif (is_user_logged_in() && is_account_page() ) {post_class('wc-dashboard'); }
+	elseif (! is_user_logged_in() && is_account_page() ) {post_class('login-page'); }
+		
+		else post_class();
+
+	endif;
+  ?>>
 	<header class="entry-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->

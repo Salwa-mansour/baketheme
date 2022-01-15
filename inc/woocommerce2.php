@@ -88,7 +88,29 @@
 	add_filter( 'body_class', 'baketheme_woocommerce_active_body_class' );
 
 
-// add_filter( 'woocommerce_add_to_cart_fragments', 'baketheme_woocommerce_cart_link_fragment' );
+
+	if ( ! function_exists( 'baketheme_woocommerce_cart_link_fragment' ) ) {
+		/**
+		 * Cart Fragments.
+		 *
+		 * Ensure cart contents update when products are added to the cart via AJAX.
+		 *
+		 * @param array $fragments Fragments to refresh via AJAX.
+		 * @return array Fragments to refresh via AJAX.
+		 */
+		function baketheme_woocommerce_cart_link_fragment( $fragments ) {
+			global $woocommerce;
+			ob_start();
+			?>
+			<span class="items-count"><?php echo  WC()->cart->get_cart_contents_count(); ?></span>
+			<?php
+			// baketheme_woocommerce_cart_link();
+			$fragments['.cart-item .items-count'] = ob_get_clean();
+	
+			return $fragments;
+		}
+	}
+	add_filter( 'woocommerce_add_to_cart_fragments', 'baketheme_woocommerce_cart_link_fragment' );
 
 	// ///////////////////
 	
@@ -136,3 +158,15 @@
 	}
 
 
+	add_action( 'wp_enqueue_scripts', 'agentwp_dequeue_stylesandscripts', 100 );
+
+	function agentwp_dequeue_stylesandscripts() {
+		if ( class_exists( 'woocommerce' ) ) {
+		wp_dequeue_style( 'selectWoo' );
+		wp_deregister_style( 'selectWoo' );
+	
+		wp_dequeue_script( 'selectWoo');
+		wp_deregister_script('selectWoo');
+	
+	   }
+	}

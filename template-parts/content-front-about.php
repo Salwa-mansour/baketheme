@@ -14,6 +14,7 @@
 		<header class="entry-header">
 		<?php
 			the_title( '<h1 class="entry-title">', '</h1>' );
+			// the_title( '<h1 class="entry-title-2nd">', '</h1>' );
 
 			// the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		
@@ -25,7 +26,7 @@
 
 		<div class="entry-content">
 			<?php
-		the_content(
+		the_excerpt(
 				sprintf(
 					wp_kses(
 						/* translators: %s: Name of current post. Only visible to screen readers */

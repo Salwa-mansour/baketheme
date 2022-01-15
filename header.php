@@ -25,7 +25,11 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'baketheme' ); ?></a>
 
-	<header id="masthead" class="site-header">
+	<header id="masthead" class="site-header <?php if ( ! is_home() && ! is_front_page() ) {echo('short-header');   }   ?>">
+	
+ 
+
+	
 
 			<div class="hero-container">
                 <img src="<?php header_image(); ?>" alt="" class="hero-img">
@@ -55,7 +59,7 @@
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'baketheme' ); ?></button>
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span class="dashicons dashicons-menu-alt"></span></button>
 			<?php
 			wp_nav_menu(
 				array(

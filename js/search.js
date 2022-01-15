@@ -1,16 +1,19 @@
-document.addEventListener('DOMContentLoaded',function(){
+// console.log('search.js is loaded');
 
-
-const searchBtn = document.querySelector('.header-search #searchsubmit');
-const searchInput =document.querySelector('.header-search .search-text');
-  searchBtn.addEventListener('click' , console.log('woo'))
+// document.addEventListener('DOMContentLoaded',function(){
 
 
 
+// const searchBtn =document.querySelector('.header-search #searchsubmit');
+// const searchInput =document.querySelector('.header-search .search-text');
+// searchBtn.addEventListener('click' , console.log(searchInput));
 
 
 
 
 
-    // ////////////////////////////////
-})
+
+
+
+   
+// });
