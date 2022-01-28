@@ -25,7 +25,7 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'baketheme' ); ?></a>
 
-	<header id="masthead" class="site-header <?php if ( ! is_home() && ! is_front_page() ) {echo('short-header');   }   ?>">
+	<header id="masthead" class="site-header <?php if (  ! is_front_page() ) {echo('short-header');   }   ?>">
 	
  
 

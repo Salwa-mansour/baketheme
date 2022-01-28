@@ -650,7 +650,8 @@ p.stars.selected a:not(.active)::before {
 .woocommerce-info,
 .woocommerce-error,
 .woocommerce-noreviews,
-p.no-comments {
+p.no-comments ,
+.contact-message.success{
 	border-left: 4px solid ;
 	border-color: #0f834d;
 	padding: 1rem;
@@ -670,7 +671,8 @@ p.no-comments {
 	border-color: orange;
 }
 
-.woocommerce-error {
+.woocommerce-error,
+.contact-message.error {
 	border-color: #e2401c;
 }
 
@@ -937,9 +939,7 @@ p.no-comments {
 	 left: 50%;
 	 line-height: 1.5;
  }
- iframe{
-	 outline: 1px solid red;
- }
+
  /* checkout styling------------- */
  article.checkout-post{
 	 max-width: 50rem;

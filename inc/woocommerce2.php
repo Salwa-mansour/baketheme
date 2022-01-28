@@ -106,6 +106,7 @@
 			<?php
 			// baketheme_woocommerce_cart_link();
 			$fragments['.cart-item .items-count'] = ob_get_clean();
+		
 	
 			return $fragments;
 		}

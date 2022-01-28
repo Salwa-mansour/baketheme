@@ -52,6 +52,8 @@ function baketheme_setup() {
 			'menu-1' => esc_html__( 'Primary', 'baketheme' ),
 		)
 	);
+
+	
 	// scondary menu
 	if(! class_exists('WooCommerce')){
 		register_nav_menus(
@@ -140,6 +142,17 @@ function baketheme_widgets_init() {
 			'after_title'   => '</h2>',
 		)
 	);
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'footer-social', 'baketheme' ),
+			'id'            => 'footer-socail-1',
+			'description'   => esc_html__( 'Add soial media block here.', 'baketheme' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s social">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
 }
 add_action( 'widgets_init', 'baketheme_widgets_init' );
 
@@ -147,13 +160,37 @@ add_action( 'widgets_init', 'baketheme_widgets_init' );
  * Enqueue scripts and styles.
  */
 function baketheme_scripts() {
-	wp_enqueue_style( 'baketheme-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_enqueue_style( 'baketheme-google-fonts','href="https://fonts.googleapis.com/css2?family=Abel&family=Spartan:wght@100;200;300;400&display=swap', array(), _S_VERSION );
-	wp_style_add_data( 'baketheme-style', 'rtl', 'replace' );
+
 	
 
 	wp_enqueue_script( 'baketheme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'baketheme-search', get_template_directory_uri() . '/js/search.js', array(), _S_VERSION, true );
+	// ------------------
+			// Registering Bootstrap style
+		// wp_enqueue_style( 'bootstrap_min0', get_template_directory_uri().'/css/bootstrap.min.css' );
+		
+		// wp_enqueue_script( 'bootstrap_min1',get_template_directory_uri().'/js/jquery-3.6.0.js' );
+		
+		// wp_enqueue_script( 'bootstrap_min3', get_template_directory_uri() . '/js/bootstrap.min.js','jquery');
+	
+		// -------------------------
+		if(is_front_page()){
+			wp_enqueue_style('bootstrap4', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+		wp_enqueue_script( 'boot1','https://code.jquery.com/jquery-3.3.1.slim.min.js', array( 'jquery' ),'',true );
+		wp_enqueue_script( 'boot2','https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', array( 'jquery' ),'',true );
+		wp_enqueue_script( 'boot3','https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', array( 'jquery' ),'',true );
+		wp_enqueue_script( 'bootstrap_min4', get_template_directory_uri() . '/js/carousel.js' ,'bootstrap.min.js');
+		}
+		
+		// -------------------------
+		// wp_enqueue_style('bootstrap4','https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css');
+		// wp_enqueue_script( 'boot1','https://code.jquery.com/jquery-3.6.0.slim.min.js', array( 'jquery' ),'',true );
+		// wp_enqueue_script( 'boot2','https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', array( 'jquery' ),'',true );
+		// wp_enqueue_script( 'boot3','https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js', array( 'jquery' ),'',true );
+		// ------------------------------
+			wp_enqueue_style( 'baketheme-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'baketheme-google-fonts','href="https://fonts.googleapis.com/css2?family=Abel&family=Spartan:wght@100;200;300;400&display=swap', array(), _S_VERSION );
+	wp_style_add_data( 'baketheme-style', 'rtl', 'replace' );
 	// ------------------
 
 

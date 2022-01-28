@@ -23,7 +23,7 @@ get_header();
 	<section class=" front-section about-us">
 		<div class="content">
 			<!-- about us section -->
-					<?php
+			<?php
 				// global $post;
 			
 				$aboutpage = get_posts( array(
@@ -35,17 +35,17 @@ get_header();
 				if ( $aboutpage ) {
 					foreach ( $aboutpage as $post ) : 
 						setup_postdata( $post ); ?>
-						<?php	get_template_part( 'template-parts/content', 'front-about' ); ?>
-					<?php
+			<?php	get_template_part( 'template-parts/content', 'front-about' ); ?>
+			<?php
 					endforeach;
 					wp_reset_postdata();
 				}
 				?>
-	
 
-	
+
+
 		</div>
-			
+
 
 
 	</section>
@@ -78,13 +78,14 @@ get_header();
 					$cat_data=get_term($category_id);
 					//    print_r($cat_data);
 					?>
-					<li class="cat-item ">
+				<li class="cat-item ">
 					<img src="<?php echo($image) ; ?>" alt="<?php esc_html_e('catigoury image'); ?>" class="cat-img">
 					<div class="cat-text">
 						<div class="center-text">
 							<h1 class="cat-name"><?php echo$cat_data->name; ?></h1>
 							<p class="cat-description"><?php echo($cat_data -> description) ?></p>
-							<a href="<?php echo get_term_link($cat->slug, 'product_cat'); ?>">shop catigury</a>
+							<a href="<?php echo get_term_link($cat->slug, 'product_cat'); ?> " class="callout-link">shop
+								catigury</a>
 						</div>
 						<!--.center-text-->
 
@@ -92,20 +93,48 @@ get_header();
 					<!--cat-item-->
 
 				</li>
-					<?php
+				<?php
 					//    echo '<br /><a href="'. get_term_link($cat->slug, 'product_cat') .'">'. $cat->name .'</a>';
 				endforeach;?>
-			
-				
+
+
 
 			</ul>
 		</div>
-			
+
 	</section>
 	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 	<section class=" front-section">
-		best selling products section
-		<div class="content">
+
+		<div class="content best-selling">
+			<h2>best selling products section</h2>
+			<ul class="best-selling-prodcuts">
+				<?php
+				$args = array(
+					'post_type' => 'product',
+					'meta_key' => 'total_sales',
+					'orderby' => 'meta_value_num',
+					'posts_per_page' => 1,
+				);
+
+				$loop = new WP_Query( $args );
+					while ( $loop->have_posts() ) : $loop->the_post(); 
+					global $product;
+				?>
+				<li class="product">
+					<a href="<?php the_permalink(); ?>" id="id-<?php the_id(); ?>" title="<?php the_title(); ?>">
+
+						<?php if (has_post_thumbnail( $loop->post->ID )) 
+						echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog'); 
+						else echo '<img src="'.woocommerce_placeholder_img_src().'" alt="product placeholder Image" width="65px" height="115px" />'; ?>
+
+
+					</a>
+				</li>
+				<?php 
+				endwhile;
+				wp_reset_query(); ?>
+			</ul>
 
 		</div>
 	</section>
@@ -114,48 +143,95 @@ get_header();
 		<!-- features section -->
 		<div class="content">
 			<p class="why-choose">why choose</p>
-		<h3 class="our-service">our bakery</h3>
-		<div class="features-wrapper">
-			<?php for($i=1;$i<=4;$i++): ?>
+			<h3 class="our-service">our bakery</h3>
+			<div class="features-wrapper">
+				<?php for($i=1;$i<=4;$i++): ?>
 
 				<div id="feature-<?php echo($i); ?>" class="feature">
-			
+
 					<?php echo wp_get_attachment_image(( get_theme_mod('feature_image'.$i) )); ?>
-					
+
 					<h4><?php echo get_theme_mod('title_setting'.$i ,'freashly baked'  ); ?></h4>
-					
-					<p><?php echo(get_theme_mod('feature_description_setting'.$i ,'Lorem ipsum dolor sit amet consectetur.'))  ?></p>
-				</div><!--feature--->
-			<?php endfor; ?>
+
+					<p><?php echo(get_theme_mod('feature_description_setting'.$i ,'Lorem ipsum dolor sit amet consectetur.'))  ?>
+					</p>
+				</div>
+				<!--feature--->
+				<?php endfor; ?>
+			</div>
+			<!--features wrapper-->
+
+
 		</div>
-		<!--features wrapper-->
-			
-			
-		</div>
-		
+
 	</section>
 	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-	<section class=" front-section">
-		user reviue section
+	<section class=" front-section rivew">
+		<!-- user reviue section -->
+		<?php $backgroundId= get_theme_mod('t_background_image'); ?>
+		<div id="bake-reviw-slider" class="carousel slide" data-ride="carousel"
+			style="background-image: linear-gradient(rgba(225, 225, 225, .3) , rgba(225, 225, 225, .3))  , url(<?php echo wp_get_attachment_image_url($backgroundId, 'large' ); ?>);">
+			<!-- <ol class="carousel-indicators">
+				<li data-target="#bake-reviw-slider" data-slide-to="0" class="active"></li>
+				<li data-target="#bake-reviw-slider" data-slide-to="1"></li>
+				<li data-target="#bake-reviw-slider" data-slide-to="2"></li>
+			</ol> -->
+			<div class="carousel-inner">
+
+				<?php for($k=1;$k<=3;$k++): ?>
+
+				<div class="carousel-item <?php if($k===1){echo('active');} ?>"  >
+					<?php echo wp_get_attachment_image(( get_theme_mod('person_image'.$k) )); ?>
+					<h3 class=""><?php echo get_theme_mod('name_setting'.$k ,'jone doe'  ); ?></h3>
+					<p><?php echo get_theme_mod('testomonial_datails_setting'.$k ,'lorem to the serviese reviwo'  ); ?>
+					</p>
+				</div><!--carousel-item-->
+
+				<?php endfor; ?>
+				<a class="carousel-control-prev" href="#bake-reviw-slider" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#bake-reviw-slider" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+			<!--carousel-inner-->
+
+		</div>
+		<!--carousel-->
+
+	</section>
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+	<section class="front-section contact">
+		<!-- contact us section -->
+		<div class="content">
+			<h2>contact us</h2>
+			<?php get_template_part('template-parts/content' ,'contact'); ?>
+		</div>
+	</section>
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+	<section class=" front-section ">
 		<div class="content">
 
-		</div>
-
-	</section>
-	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-	<section class="front-section">
-		<!-- contact us section -->
-			<div class="content">
-
-			</div>
-	</section>
-	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-	<section class=" front-section">
-				<div class="content">
-					
+			<div class="location-wrapper">
+				<h2>visit us</h2>
+				<div id="loaction"><span class="dashicons"></span>
+					<span
+						class="location-text"><?php echo get_theme_mod('location_text_setting' ,'lorem lorem reomr ela flfjelje fkewrj wlfjelkr wefekw'  ); ?></span>
 				</div>
+				<div class="map-container">
+					<?php echo get_theme_mod('location_ifram_setting'  ); ?>
+				</div>
+				<!--map-container-->
+			</div>
+			<!--location-wrapper-->
+
+
+		</div>
 		<!-- map section section -->
-	
+
 	</section>
 
 
