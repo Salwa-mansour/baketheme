@@ -50,94 +50,102 @@ get_header();
 
 	</section>
 	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-	<section class="front-section">
-		<!-- catigories section -->
-		<div class="content">
-			<ul class="wp-block-categories-list ">
-				<?php 
-					$args = array(
-						'taxonomy'     => 'product_cat',
-						'orderby'      => 'date',
-						'order'		   => 'asc',
-						// 'show_count'   => $show_count,
-						// 'pad_counts'   => $pad_counts,
-						// 'hierarchical' => 0,
-						'title_li'     => '',
-						// 'hide_empty'   => $empty
-				);
-				$all_categories = get_categories( $args );
-				foreach ($all_categories as $cat) :
-					
-					$category_id = $cat->term_id;  
-						// get the thumbnail id using the queried category term_id
-						$thumbnail_id = get_term_meta( $category_id , 'thumbnail_id', true ); 
+	<?php if ( class_exists( 'WooCommerce' ) ) : ?>
 
-						// get the image URL
-						$image = wp_get_attachment_url( $thumbnail_id ); 
-				// echo ($image.'kkkkkk');
-					$cat_data=get_term($category_id);
-					//    print_r($cat_data);
-					?>
-				<li class="cat-item ">
-					<img src="<?php echo($image) ; ?>" alt="<?php esc_html_e('catigoury image'); ?>" class="cat-img">
-					<div class="cat-text">
-						<div class="center-text">
-							<h1 class="cat-name"><?php echo$cat_data->name; ?></h1>
-							<p class="cat-description"><?php echo($cat_data -> description) ?></p>
-							<a href="<?php echo get_term_link($cat->slug, 'product_cat'); ?> " class="callout-link">shop
-								catigury</a>
-						</div>
-						<!--.center-text-->
+			<section class="front-section">
+				<!-- catigories section -->
+				<div class="content">
+					<ul class="wp-block-categories-list ">
+						<?php 
+							$args = array(
+								'taxonomy'     => 'product_cat',
+								'orderby'      => 'date',
+								'order'		   => 'asc',
+								// 'show_count'   => $show_count,
+								// 'pad_counts'   => $pad_counts,
+								// 'hierarchical' => 0,
+								'title_li'     => '',
+								// 'hide_empty'   => $empty
+						);
+						$all_categories = get_categories( $args );
+						foreach ($all_categories as $cat) :
+							
+							$category_id = $cat->term_id;  
+								// get the thumbnail id using the queried category term_id
+								$thumbnail_id = get_term_meta( $category_id , 'thumbnail_id', true ); 
 
-					</div>
-					<!--cat-item-->
+								// get the image URL
+								$image = wp_get_attachment_url( $thumbnail_id ); 
+						// echo ($image.'kkkkkk');
+							$cat_data=get_term($category_id);
+							//    print_r($cat_data);
+							?>
+						<li class="cat-item ">
+							<img src="<?php echo($image) ; ?>" alt="<?php esc_html_e('catigoury image'); ?>" class="cat-img">
+							<div class="cat-text">
+								<div class="center-text">
+									<h1 class="cat-name"><?php echo$cat_data->name; ?></h1>
+									<p class="cat-description"><?php echo($cat_data -> description) ?></p>
+									<a href="<?php echo get_term_link($cat->slug, 'product_cat'); ?> " class="callout-link">shop
+										catigury</a>
+								</div>
+								<!--.center-text-->
 
-				</li>
-				<?php
-					//    echo '<br /><a href="'. get_term_link($cat->slug, 'product_cat') .'">'. $cat->name .'</a>';
-				endforeach;?>
+							</div>
+							<!--cat-item-->
+
+						</li>
+						<?php
+							//    echo '<br /><a href="'. get_term_link($cat->slug, 'product_cat') .'">'. $cat->name .'</a>';
+						endforeach;?>
 
 
 
-			</ul>
-		</div>
+					</ul>
+				</div>
 
-	</section>
+			</section>
+
+	<?php endif;//if ( class_exists( 'WooCommerce' ) ) : ?>
 	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-	<section class=" front-section">
+	<?php if ( class_exists( 'WooCommerce' ) ) : ?>
 
-		<div class="content best-selling">
-			<h2>best selling products section</h2>
-			<ul class="best-selling-prodcuts">
-				<?php
-				$args = array(
-					'post_type' => 'product',
-					'meta_key' => 'total_sales',
-					'orderby' => 'meta_value_num',
-					'posts_per_page' => 1,
-				);
+			<section class=" front-section">
 
-				$loop = new WP_Query( $args );
-					while ( $loop->have_posts() ) : $loop->the_post(); 
-					global $product;
-				?>
-				<li class="product">
-					<a href="<?php the_permalink(); ?>" id="id-<?php the_id(); ?>" title="<?php the_title(); ?>">
+				<div class="content best-selling">
+					<h3>best selling products</h3>
+					<ul class="best-selling-prodcuts">
+						<?php
+						$args = array(
+							'post_type' => 'product',
+							'meta_key' => 'total_sales',
+							'orderby' => 'meta_value_num',
+							'posts_per_page' => 1,
+						);
 
-						<?php if (has_post_thumbnail( $loop->post->ID )) 
-						echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog'); 
-						else echo '<img src="'.woocommerce_placeholder_img_src().'" alt="product placeholder Image" width="65px" height="115px" />'; ?>
+						$loop = new WP_Query( $args );
+							while ( $loop->have_posts() ) : $loop->the_post(); 
+							global $product;
+						?>
+						<li class="product">
+							<a href="<?php the_permalink(); ?>" id="id-<?php the_id(); ?>" title="<?php the_title(); ?>">
+
+								<?php if (has_post_thumbnail( $loop->post->ID )) 
+								echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog'); 
+								else echo '<img src="'.woocommerce_placeholder_img_src().'" alt="product placeholder Image" width="65px" height="115px" />'; ?>
 
 
-					</a>
-				</li>
-				<?php 
-				endwhile;
-				wp_reset_query(); ?>
-			</ul>
+							</a>
+						</li>
+						<?php 
+						endwhile;
+						wp_reset_query(); ?>
+					</ul>
 
-		</div>
-	</section>
+				</div>
+			</section>
+			
+	<?php endif;//if ( class_exists( 'WooCommerce' ) ) : ?>
 	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 	<section class="front-section featuers-section">
 		<!-- features section -->
@@ -207,7 +215,7 @@ get_header();
 	<section class="front-section contact">
 		<!-- contact us section -->
 		<div class="content">
-			<h2>contact us</h2>
+			<!-- <h2>contact us</h2> -->
 			<?php get_template_part('template-parts/content' ,'contact'); ?>
 		</div>
 	</section>
@@ -222,7 +230,7 @@ get_header();
 						class="location-text"><?php echo get_theme_mod('location_text_setting' ,'lorem lorem reomr ela flfjelje fkewrj wlfjelkr wefekw'  ); ?></span>
 				</div>
 				<div class="map-container">
-					<?php echo get_theme_mod('location_ifram_setting'  ); ?>
+					<?php // echo get_theme_mod('location_ifram_setting'  ); ?>
 				</div>
 				<!--map-container-->
 			</div>

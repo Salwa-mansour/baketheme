@@ -78,7 +78,7 @@
 ?>
 <div id="respond">
                 <!-- <?php //echo $response.'--woo'; ?> -->
-
+                <h2>conatct us</h2>
 
                 <form action="<?php the_permalink(); ?>" method="post">
                    

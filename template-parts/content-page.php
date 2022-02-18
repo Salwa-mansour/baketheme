@@ -26,9 +26,11 @@ if ( class_exists( 'WooCommerce' ) ):
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
 
-	<?php baketheme_post_thumbnail(); ?>
+	
+
 
 	<div class="entry-content">
+	<?php baketheme_post_thumbnail(); ?>
 		<?php
 		the_content();
 
@@ -41,7 +43,9 @@ if ( class_exists( 'WooCommerce' ) ):
 		?>
 	</div><!-- .entry-content -->
 
-	<?php if ( get_edit_post_link() ) : ?>
+
+
+		<?php if ( get_edit_post_link() ) : ?>
 		<footer class="entry-footer">
 			<?php
 			edit_post_link(
@@ -62,5 +66,6 @@ if ( class_exists( 'WooCommerce' ) ):
 			);
 			?>
 		</footer><!-- .entry-footer -->
+		
 	<?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->

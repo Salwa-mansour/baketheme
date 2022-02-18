@@ -54,8 +54,11 @@
 				?>
 				<p class="site-description"><?php echo $baketheme_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 			<?php endif; ?>
+			<?php if ( class_exists( 'WooCommerce' ) ) : ?>
+		
 			<!-- \\get link of about us page by query -->
 			<a href="<?php  echo esc_url(get_permalink( get_option( 'woocommerce_shop_page_id' )));  ?>" class="callout-link">collect bread</a>
+			<?php endif;//if ( class_exists( 'WooCommerce' ) ) : ?>
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
@@ -70,19 +73,23 @@
 			?>
 			<?php the_custom_logo(); ?>
 			<?php
-				if ( class_exists( 'WooCommerce' ) ) {
+				
 				?>
 				<!-- <div class="cart-menu"> -->
 
 				
 							<ul class="cart-nav">
+
+							
+								<?php if ( class_exists( 'WooCommerce' ) ) : ?>
 							 <li class="page-item cart-item">
-								
 								<a href="<?php echo wc_get_cart_url(); ?>">
 									<span class="dashicons dashicons-cart"></span>
 									<span class="items-count"><?php echo  WC()->cart->get_cart_contents_count(); ?></span>
 								</a>
-							 </li>	
+							 </li>		
+								<?php endif;//if ( class_exists( 'WooCommerce' ) ) : ?>
+							
 							 <li class="page-item">
 								 <?php  get_search_form(); ?>
 							 </li>
@@ -105,17 +112,6 @@
 								
 							</ul><!--cart-nav-->
 
-						<?php	
-						}else{
-									wp_nav_menu(
-							array(
-								'theme_location' => 'menu-2',
-								'menu_id'        => 'secondary-menu',
-							)
-						);
-							}
-					
-						?>
 					</nav><!-- #site-navigation -->
 				<!-- </div>cart-menu -->
 	</header><!-- #masthead -->

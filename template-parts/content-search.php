@@ -23,13 +23,11 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<?php baketheme_post_thumbnail(); ?>
+	<?php //baketheme_post_thumbnail(); ?>
 
 	<div class="entry-summary">
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-summary -->
 
-	<footer class="entry-footer">
-		<?php baketheme_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+	
 </article><!-- #post-<?php the_ID(); ?> -->

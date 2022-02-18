@@ -2,9 +2,10 @@
     
    
     <?php if(class_exists('WooCommerce')): ?>
-        
-    <input type="hidden" value="product" name="post_type"  id="post_type" />
-        <?php endif; ?>
+           <input type="hidden" value="product" name="post_type"  id="post_type" />
+    <?php else:?>
+        <input type="hidden" value="post" name="post_type"  id="post_type" />
+    <?php endif; ?>
         <input type="checkbox"  id="show_textbox" >
         <label for="show_textbox" id="show_textbox_label" ></label>
         <input type="text" name="s" id="s" placeholder="<?php esc_attr_e( 'Search' ); ?>" class="search-text" />

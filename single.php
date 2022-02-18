@@ -20,8 +20,8 @@ get_header();
 
 			the_post_navigation(
 				array(
-					'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'baketheme' ) . '</span> <span class="nav-title">%title</span>',
-					'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'baketheme' ) . '</span> <span class="nav-title">%title</span>',
+					'prev_text' => '<span class="nav-subtitle">' . esc_html__( '<<', 'baketheme' ) . '</span> <span class="nav-title">%title</span>',
+					'next_text' => '<span class="nav-subtitle">' . esc_html__( '>>', 'baketheme' ) . '</span> <span class="nav-title">%title</span>',
 				)
 			);
 
@@ -36,7 +36,7 @@ get_header();
 		</main><!-- #main -->
 
 		<?php
-		// get_sidebar();?>
+		get_sidebar();?>
 	</div><!--main-wrapper-->
 <?php		
 get_footer();
