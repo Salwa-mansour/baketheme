@@ -87,7 +87,7 @@ get_header();
 									<h1 class="cat-name"><?php echo$cat_data->name; ?></h1>
 									<p class="cat-description"><?php echo($cat_data -> description) ?></p>
 									<a href="<?php echo get_term_link($cat->slug, 'product_cat'); ?> " class="callout-link">shop
-										catigury</a>
+										now</a>
 								</div>
 								<!--.center-text-->
 
@@ -131,7 +131,7 @@ get_header();
 							<a href="<?php the_permalink(); ?>" id="id-<?php the_id(); ?>" title="<?php the_title(); ?>">
 
 								<?php if (has_post_thumbnail( $loop->post->ID )) 
-								echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog'); 
+								echo get_the_post_thumbnail($loop->post->ID, 'medium'); 
 								else echo '<img src="'.woocommerce_placeholder_img_src().'" alt="product placeholder Image" width="65px" height="115px" />'; ?>
 
 
@@ -230,7 +230,7 @@ get_header();
 						class="location-text"><?php echo get_theme_mod('location_text_setting' ,'lorem lorem reomr ela flfjelje fkewrj wlfjelkr wefekw'  ); ?></span>
 				</div>
 				<div class="map-container">
-					<?php // echo get_theme_mod('location_ifram_setting'  ); ?>
+					<?php  echo get_theme_mod('location_ifram_setting'  ); ?>
 				</div>
 				<!--map-container-->
 			</div>

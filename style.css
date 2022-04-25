@@ -1400,6 +1400,7 @@ h3.our-service,
 	flex-wrap: wrap;
 	justify-content:center;
 	align-items: center;
+	padding-bottom: 2rem;
 }
 .features-wrapper .feature{
 	text-align: center;

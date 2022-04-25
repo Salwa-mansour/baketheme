@@ -171,3 +171,12 @@
 	
 	   }
 	}
+
+	remove_action("woocommerce_before_shop_loop_item_title","woocommerce_template_loop_product_thumbnail");
+	add_action("woocommerce_before_shop_loop_item_title","baketheme_woocommerce_template_loop_product_thumbnail");
+	function baketheme_woocommerce_template_loop_product_thumbnail(){
+		global $post;
+		if ( has_post_thumbnail() )
+			//   echo get_the_post_thumbnail( $post->ID, array(300, 300) );
+			  echo get_the_post_thumbnail( $post->ID,'shop_single' );
+	}
