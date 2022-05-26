@@ -110,8 +110,9 @@ get_header();
 	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 	<?php if ( class_exists( 'WooCommerce' ) ) : ?>
 
-			<section class=" front-section">
+			<section id="canvas-animation" class=" front-section">
 
+			
 				<div class="content best-selling">
 					<h3>best selling products</h3>
 					<ul class="best-selling-prodcuts">
@@ -140,9 +141,14 @@ get_header();
 						<?php 
 						endwhile;
 						wp_reset_query(); ?>
+						<div class="canvas_container">
+         <canvas id = 'canvas'></canvas>
+    </div>
 					</ul>
 
 				</div>
+
+				
 			</section>
 			
 	<?php endif;//if ( class_exists( 'WooCommerce' ) ) : ?>

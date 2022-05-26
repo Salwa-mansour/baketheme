@@ -1444,6 +1444,7 @@ h3.our-service,
 /* best-selling-prodcuts----------- */
 .best-selling{
 	text-align: center;
+	
 }
 .best-selling-prodcuts{
 	list-style: none;
@@ -1451,6 +1452,12 @@ h3.our-service,
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
+	position: relative;
+	
+	/* z-index: 20; */
+}
+.best-selling-prodcuts li{
+		z-index: 20;
 }
 .best-selling-prodcuts img{
 	width:18.25rem ;
@@ -1551,6 +1558,20 @@ h3.our-service,
 		text-transform: capitalize;
 		margin:  auto;
 		padding:1rem 0 ;
+	}
+	.site-main .front-section.contact{
+		background-image: linear-gradient(rgba(0, 0, 0, .8) , rgba(0, 0, 0, .8)) , url(http://localhost:10010/wp-content/uploads/2022/05/glen-carrie-irNhy5PWltw-unsplash2.jpg) ;
+		background-position: 0 center;
+		background-size: 100%;
+		animation:900000s backgroundScroll infinite linear;
+	}
+	@keyframes backgroundScroll {
+		0%{
+			background-position: 0 center;
+		}
+		100%{
+			background-position: -99999999px center;
+		}
 	}
 /* location fornt page section------------------------- */
 #loaction span.dashicons::before{
@@ -1987,4 +2008,28 @@ div.map-container  iframe{
 	
 	
 	
+}
+/* ----------- animation test 1 ------------------------- */
+.canvas_container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+	top: -66px;
+	left: -170px;
+	z-index: 10;
+
+   
+}
+#canvas{
+	background-color: transparent;
+	position: absolute;
+	left: 0;
+	 /* outline: 1px solid red; */
+}
+#canvas-animation{
+	overflow: hidden;
+}
+#canvas-animation h3{
+	position: relative;
+	z-index: 20;
 }

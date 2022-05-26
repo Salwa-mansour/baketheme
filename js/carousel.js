@@ -2,7 +2,7 @@
 
 jQuery(document).ready(function($) {
 
-    console.log('hee');
+    // console.log('hee');
     // $('.carousel').carousel();
     $('.carousel').carousel({
         interval: 1000

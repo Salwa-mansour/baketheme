@@ -165,6 +165,7 @@ function baketheme_scripts() {
 
 	wp_enqueue_script( 'baketheme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'baketheme-search', get_template_directory_uri() . '/js/search.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'baketheme-animation-test', get_template_directory_uri() . '/js/animation.js', array(), _S_VERSION, true );
 	// ------------------
 			// Registering Bootstrap style
 		// wp_enqueue_style( 'bootstrap_min0', get_template_directory_uri().'/css/bootstrap.min.css' );
